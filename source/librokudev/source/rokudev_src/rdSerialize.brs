@@ -9,16 +9,15 @@
 ' * Recursive stringification of data structures, doubles as JSON creator *
 ' *************************************************************************
 function rdSerialize(v as dynamic, outformat="BRS" as string) as string
-	q = chr(34)
 	kq = "" ' for BRS
 	if outformat = "JSON" then kq = chr(34)
 	out = ""
 	v = box(v)
 	vType = type(v)
 	if     vType = "roString"
-		re = CreateObject("roRegex",q,"")
-		v = re.replaceall(v, q+"+q+"+q )
-		out = out + q + v + q
+		re = CreateObject("roRegex",chr(34),"")
+		v = re.replaceall(v, chr(34)+"+chr(34)+"+chr(34) )
+		out = out + chr(34) + v + chr(34)
 	elseif vType = "roInt"
 		out = out + v.tostr()
 	elseif vType = "roFloat"
@@ -43,9 +42,9 @@ function rdSerialize(v as dynamic, outformat="BRS" as string) as string
 		end for
 		out = out + "}"
 	elseif vType = "roFunction"
-		out = out + "Function of length " + v.getsub().len().tostr() + ","
+		out = out + "(Function)"
 	else
-		out = out + q + vType + q
+		out = out + chr(34) + vType + chr(34)
 	end if
 	return out
 end function
