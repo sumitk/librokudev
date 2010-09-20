@@ -9,9 +9,9 @@
 ' # Requires: #
 ' #############
 
-' **********************************
+' ***************************************
 ' * Auto-Scrolling roImageCanvas buffer *
-' **********************************
+' ***************************************
 function rdConsole(init={} as object) as object
 	this = {
 		' Member vars
@@ -83,11 +83,11 @@ function rdConsole(init={} as object) as object
 				end for
 				location.y = m._location.y+(m._line_height*cur_lines)
 				msg = {
-                                        Text: text,
-                                        TextAttrs: textattrs,
-                                        Mode:"Source",
-                                        TargetRect: location
-                                }
+					Text: text,
+					TextAttrs: textattrs,
+					Mode:"Source",
+					TargetRect: location
+				}
 
 				msgs.push(msg)
 				cur_lines = cur_lines+1
@@ -108,7 +108,7 @@ function rdConsole(init={} as object) as object
 		show: function() as object
 			' print "showing console"
 			m._canvas.show()
-                        sleep(50)
+			sleep(50) ' Hard-coded currently
 			return m
 		end function
 
