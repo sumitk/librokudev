@@ -1,5 +1,4 @@
 * Review rdLine and rdConsole for coding standards.
-* Add rdSerialize and rdJSON.
 * Refactor rdPNG into more generic PNG library, it's fairly specific to the
 needs to KidPaint currently.
 * Refactor rdShape into a general purpose color index PNG library called
