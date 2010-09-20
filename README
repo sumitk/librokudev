@@ -1,0 +1,51 @@
+INTRODUCTION
+------------
+
+This is libRokuDev, a community-created library of useful Roku BrightScript
+functions and classes.  libRokuDev handles a lot of the busy work so that you
+can get on with the more interesting work of building your channel.
+
+
+INSTALLATION
+------------
+
+Installing libRokuDev into your project is simple:
+
+1. Copy the rokudev_files/ directory from the libRokuDev repository
+   (in source/librokudev/ ) into your project at the same level as your
+   usual images/ and source/ directories.
+
+2. Copy the rokudev_src/ directory from the libRokuDev repository
+   (in source/librokudev/source/ ) into your project inside the source/
+   directory that contains your BrightScript .brs files.
+
+Thus, your application's final structure should look like this:
+
+    .
+    |-- packages
+    |-- zips
+    `-- source
+        `-- YOUR_APP
+            |-- rokudev_files
+            |   `-- ...
+            `-- source
+                |-- YOUR.brs
+                |-- BRIGHTSCRIPT.brs
+                |-- FILES.brs
+                |-- ...
+                `-- rokudev_src
+                    |-- rdBitwise.brs
+                    |-- rdByteArray.brs
+                    |-- rdCRC.brs
+                    |-- rdDebug.brs
+                    |-- rdFunctional.brs
+                    |-- rdTempFile.brs
+                    `-- ...
+
+LICENSE
+-------
+The app.mk file is copied from the Roku SDK examples and is Copyright 2010,
+Roku Inc.
+
+All other files are Copyright 2010, GandK Labs.  This library is open source;
+see the LICENSE file for more details.
