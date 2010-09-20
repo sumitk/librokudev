@@ -76,3 +76,11 @@ Function _rdMakeApplyHelper(arity as Integer) as Object
 
 	return helper
 End Function
+
+function rdIIf(condition, trueval, falseval)
+	if condition
+		return trueval
+	else
+		return falseval
+	end if
+end function
