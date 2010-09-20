@@ -49,3 +49,11 @@ Roku Inc.
 
 All other files are Copyright 2010, GandK Labs.  This library is free software;
 see the LICENSE file for more details.
+
+NOTES
+-----
+rdPNG.brs will have an interface change shortly, so be aware of that before
+using it too heavily.
+rdShape.brs will be genericized to a general purpose color indexed PNG library,
+and it's name and interface may change at that time.
+See the TODO file for more info on upcoming changes and additions
