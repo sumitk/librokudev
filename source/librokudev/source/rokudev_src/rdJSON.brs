@@ -21,7 +21,7 @@ function rdJSONParser( jsonString as string ) as object
 	valueStart = "[" +q+ "\d\[{]|true|false|null"
 	reReplaceKeySpaces = "("+beforeKey+")\s*"+q+"("+keyFiller+")("+keyNospace+")\s+("+keyNospace+")\s*"+q+"\s*:\s*(" + valueStart + ")"
 	
-	regexKeyUnquote = CreateObject( "roRegex", q + "([a-zA-Z0-9_\-\s]*)" + q + "\:", "i" )
+	regexKeyUnquote = CreateObject( "roRegex", q + "([a-zA-Z0-9_\-\s]*)" + q + "\s*:", "i" )
 	regexKeyUnspace = CreateObject( "roRegex", reReplaceKeySpaces, "i" )
 	regexQuote = CreateObject( "roRegex", "\\" + q, "i" )
 
