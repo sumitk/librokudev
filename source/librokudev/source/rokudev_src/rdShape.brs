@@ -56,7 +56,7 @@ function rdShape(shapetype as string, placement={} as object, color={} as object
 		end function
 		' Create's PNG image for shape, and returns it's location
 		makeImage: function() as string
-			png = rdPNG("pkg:/rokudev/shapes/"+m._shape+".png")
+			png = rdPNG("pkg:/rokudev_files/shapes/"+m._shape+".png")
 			png.setColor(m._color)
 			tmp = rdTempFile(".png")
 			png.save(tmp)

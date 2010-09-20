@@ -71,7 +71,7 @@ function rdLine(coords={} as object, color={} as object) as object
 		end function
 		' Create's PNG image for line, and returns it's location
 		makeImage: function() as string
-			png = rdPNG("pkg:/rokudev/shapes/pixel.png")
+			png = rdPNG("pkg:/rokudev_files/shapes/pixel.png")
 			png.setColor(m._color)
 			tmp = rdTempFile(".png")
 			png.save(tmp)
