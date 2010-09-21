@@ -9,9 +9,11 @@
 ' # Requires: rdSerialize.brs #
 ' #############################
 
-' ***************************************************************
-' * Returns BrightScript object that matches passed JSON string *
-' ***************************************************************
+' *****************************************************************
+' * Returns BrightScript object that matches passed JSON string   *
+' * Original concept from hoffmcs, revised by TheEndless, further *
+' * optimized by kbenson                                          *
+' *****************************************************************
 function rdJSONParser( jsonString as string ) as object
 	q = chr(34)
 
