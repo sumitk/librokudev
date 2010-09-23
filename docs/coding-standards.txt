@@ -26,9 +26,13 @@ maintain the coding standards below:
   - Space outside braces, except when used as subscripts
   - Space inside braces when expression is more than one token
   - No spurious comma at end of line in data structure declarations
+  - At least one blank line between sub/function/method definitions
+  - At least one blank line between member variables and method definitions
+    in a class declaration
 
 * Case conventions
   - Camel case class, method, function, and sub names
+  - Lowercase member variable names, with a leading underscore
   - Lowercase keywords / control structures
   - No convention for other cases
 
