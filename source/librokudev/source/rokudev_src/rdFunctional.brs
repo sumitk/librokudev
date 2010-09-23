@@ -13,7 +13,7 @@
 ' * associative array) given as input, but can be forced to   *
 ' * return only a normal array using force_array.             *
 ' *************************************************************
-Function rdMap(f as Object, in_array as Object, force_array = false) as Object
+function rdMap(f as object, in_array as object, force_array = false) as object
 	if GetInterface(in_array, "ifAssociativeArray") <> invalid
 		if force_array
 			out_array = []
@@ -38,12 +38,12 @@ Function rdMap(f as Object, in_array as Object, force_array = false) as Object
 	end if
 
 	return out_array
-End Function
+end function
 
 ' *********************************************************************
 ' * Call a function needing discrete arguments with an array instead. *
 ' *********************************************************************
-Function rdApply(f as Object, args as Object) as Dynamic
+function rdApply(f as object, args as object) as dynamic
 	arity = args.count()
 
 	if m.doesExist("_rdFunctional") and m._rdFunctional.doesExist("_apply_helpers")
@@ -59,23 +59,23 @@ Function rdApply(f as Object, args as Object) as Dynamic
 	end if
 
 	return helper(f, args)
-End Function
+end function
 
-Function _rdMakeApplyHelper(arity as Integer) as Object
-	code = "helper = Function (f as Object, args as Object) as Dynamic : return f("
+function _rdMakeApplyHelper(arity as integer) as object
+	code = "helper = function (f as object, args as object) as dynamic : return f("
 	for i = 0 to arity - 1
 		code = code + "args[" + i.toStr() + "]"
 		if i <> arity - 1
 			code = code + ", "
 		end if
 	end for
-	code = code + ") : End Function"
+	code = code + ") : end function"
 
 	' print "apply helper for arity"; arity ": " code
 	eval(code)
 
 	return helper
-End Function
+end function
 
 function rdIIf(condition, trueval, falseval)
 	if condition
