@@ -1,0 +1,42 @@
+To maintain consistency and readability for all participants, please
+maintain the coding standards below:
+
+* All files start with header comment block containing:
+  - File name (without .brs)
+  - One-line description
+  - Copyright
+  - LICENSE reference
+
+* All functions have header comment block containing:
+  - One-line description
+
+* Type declarations on:
+  - Sub/Function parameters
+  - Function return values
+
+* Formatting
+  - Indent is 1 (real) tab character
+  - Space after comma
+  - Space after colon, and optionally also before colon
+    (e.g. when aligning colons in structure declaration)
+    . Special exception: single line structure declaration
+      when keys and values are identical and very short, such as
+      { x:x, y:y }
+  - Space surrounding binary operators
+  - Space outside braces, except when used as subscripts
+  - Space inside braces when expression is more than one token
+  - No spurious comma at end of line in data structure declarations
+
+* Case conventions
+  - Camel case class, method, function, and sub names
+  - Lowercase keywords / control structures
+  - No convention for other cases
+
+* Miscellaneous
+  - Use 'sub .. end sub' instead of 'function ... as void ... end function'
+
+* libRokuDev-specific
+  - All files, top-level functions, and classes start with 'rd'
+  - Method names do not start with 'rd'
+  - Any file that requires functionality in other files must declare such in
+    a 'Requires:' comment block just under the file header comment block
