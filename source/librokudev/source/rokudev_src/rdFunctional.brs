@@ -77,10 +77,13 @@ function _rdMakeApplyHelper(arity as integer) as object
 	return helper
 end function
 
-function rdIIf(condition, trueval, falseval)
+' *****************************************************
+' * A simple Inline If (ternary/conditional) function *
+' *****************************************************
+function rdIIf(condition as boolean, true_val as dynamic, false_val as dynamic) as dynamic
 	if condition
-		return trueval
+		return true_val
 	else
-		return falseval
+		return false_val
 	end if
 end function
