@@ -94,11 +94,12 @@ function rdLine(coords={} as object, color={} as object) as object
 		end function
 		' Remove image and saved data
 		delete: function() as boolean
-			if m._file<>"" then DeleteFile(m._file)
-			m._file      = ""
-			m._shape     = ""
-			m._placement = { x:0, y:0, w:1, h:1, r:0 }
-			m._color     = { r:0, g:0, b:0 }
+			if m._file <> "" then DeleteFile(m._file)
+
+			m._file	  = ""
+			m._width  = 1
+			m._coords = { x1: 0, y1: 0, x2: 0, y2: 0 }
+			m._color  = { r: 0, g: 0, b: 0 }
 		end function
 	}
 
@@ -116,6 +117,6 @@ function rdLine(coords={} as object, color={} as object) as object
 		end if
 	end for
 
-	' Set the shape
+	' Return the initialized object
 	return this
 end function
