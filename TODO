@@ -1,5 +1,6 @@
+* Add docs/ directory, starting with coding standards doc.
 * Review rdLine and rdConsole for coding standards.
-* Refactor rdPNG into more generic PNG library, it's fairly specific to the
-needs to KidPaint currently.
-* Refactor rdShape into a general purpose color index PNG library called
-(tentatively) rdIndexedImage.brs.
+* Refactor rdPNG into more generic PNG library (it's fairly specific
+  to the needs of KidPaint currently).
+* Refactor rdShape into a general purpose color index PNG library,
+  tentatively called rdIndexedImage.brs.
