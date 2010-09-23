@@ -1,5 +1,5 @@
 ' *********************************************************************
-' * libRokuDev, Function Programming Operations                       *
+' * libRokuDev, Functional Programming Operations                     *
 ' *                                                                   *
 ' * Copyright 2010, GandK Labs.  This library is free software; see   *
 ' * the LICENSE file in the libRokuDev distribution for more details. *
