@@ -23,7 +23,9 @@ function rdSerialize(v as dynamic, outformat="BRS" as string) as string
 	elseif vType = "roFloat"
 		out = out + str(v)
 	elseif vType = "roBoolean"
-		out = out + rdIIf(v, "true", "false")
+		bool = "false"
+		if v then bool = "true"
+		out = out + bool
 	elseif vType = "roList" or vType = "roArray"
 		out = out + "["
 		sep = ""
