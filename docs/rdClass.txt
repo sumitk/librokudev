@@ -1,7 +1,7 @@
 rdClass Usage:
 
 function point2D(initdata as object) as object
-	this = rdClass("point2D", {
+	this = rdClass("Point2D", {
 		x: {
 			type: "roInt",
 			default: 1 ' Default value
@@ -28,14 +28,43 @@ function point2D(initdata as object) as object
 		} ' No automatic way to set attribute
 	})
 
-	' Nothing prevents you from using object as you did before
+	' Sets passed in data if defined for each attribute, otherwise sets defaults if defined
+	this._initialize(initdata)
+
+	' Methods for adding a method to the class, single or as a group
+	this._addMethod("incrementFoo", incrementFoo)
+	this._addMethods({
+		method1: function1
+		method2: function2
+	})
+
+	' Nothing prevents you from using object as you did before, but they will not be inherited by subclasses
 	' Manually defined method accessing automatic attribute
-	this.incrementFoo = function() : m._data.foo = m._data.foo + 1 : end function
+	this.myIncrementFoo = incrementFoo
 	' Manually defined attribute and method
 	this._manual = 1
 	this.getManual = function() : return this._manual : end function
 
-	this.initialize(initdata)
+	return this
+end function
+
+function incrementFoo()
+	m._data.foo = m._data.foo + 1
+end function
+
+' Inheritance is the optional third argument of rdClass, and is defined
+' through an array of class names.  The leftmost classes have precendence in
+' the case of a conflict of attribute name or defined method.
+function point3d(initdate as object) as object
+	this = rdClass("Point3d", {
+		z: {
+			type: "roInt"
+			coerce: true
+			accessor: "z"
+		}
+	}, ["Point2D"])
+
+	this._initialize(initdata)
 
 	return this
 end function
@@ -43,11 +72,11 @@ end function
 function line(initdata as object) as object
 	this = rdClass("line", {
 		p1: {
-			type: "point2D" ' Require passed in value be an rdClass("point2D") class
+			type: "Point3D" ' Require passed in value be an rdClass("point2D") class
 			accessor: "p1"
 		} 
 		p2: {
-			type: "point2D"
+			type: "Point3D"
 			accessor: "p2"
 		} 
 	})
@@ -73,4 +102,4 @@ end function
 	"roAssociativeArray"
 	"roByteArray"
 	"roFunction"
-
+	Any rdClass object name

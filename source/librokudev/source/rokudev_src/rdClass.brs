@@ -1,15 +1,8 @@
-' *********************************************************************
-' * libRokuDev, (More) Advanced OO and Class Model                    *
-' *                                                                   *
-' * Copyright 2010, GandK Labs.  This library is free software; see   *
-' * the LICENSE file in the libRokuDev distribution for more details. *
-' *********************************************************************
-
 function rdClass(classname as string, spec as object, ancestors=[]) as object
 	if not m.doesExist("class") then m.class = {}
 	if not m.class.doesExist(classname)
 
-		' If the subclass is a string, replace with stored class data (if there is any), or attempt to create class to make that info
+		' If the isubclass is a string, replace with stored class data (if there is any), or attempt to create class to make that info
 		ancestorObjs = []
 		for i=0 to ancestors.count()-1
 			if type(box(ancestors[i])) = "roString"
@@ -28,7 +21,7 @@ function rdClass(classname as string, spec as object, ancestors=[]) as object
 			end if
 		end for
 
-		' Create skeleton class
+		' Create skeletan class
 		this = {
 			_CLASSNAME: classname
 			_spec:      spec
@@ -73,7 +66,7 @@ function rdClass(classname as string, spec as object, ancestors=[]) as object
 				coerceCode = "if not _rdObject_checkType("+DQ+attr_type+DQ+", value)"+NL+"value = _rdObject_coerceType("+DQ+attr_type+DQ+", value)"+NL+"if value = invalid then return false"+NL+"end if"
 			end if
 
-			' Generate validation code if required
+			' Generatte validation code if required
 			validationCode = ""
 			if attribute.doesExist("validator") and type(box(attribute.validator)) = "roString"
 				validationCode = "if not "+attribute.validator+"(value) then return false"
@@ -106,7 +99,7 @@ function rdClass(classname as string, spec as object, ancestors=[]) as object
 		m.class[classname] = this
 	end if
 
-	''' This code runs on every instantiation, so nothing slow here '''
+	''' This code runs on ever instantiation, so nothing slow here '''
 	prototype = m.class[classname]
 	objCopy = {
 		_CLASSNAME: classname
@@ -202,17 +195,22 @@ function _rdObject_coerceType(targetType, value) as dynamic
 end function
 
 function _rdObject_addMethod(name as string, code) as boolean
+	if m._prototype._defined_methods.doesExist(name) then return false
 	if type(box(code)) <> "roFunction" then return false
 	m[name] = code
 	m._prototype._defined_methods[name] = code
+	return true
 end function
 
 function _rdObject_addMethods(methods as object, label="__COMPLETELABEL__" as string) as boolean
 	for each name in methods
-		code = methods[name]
-		if type(box(code)) <> "roFunction" then return false
-		m[name] = code
-		m._prototype._defined_methods[name] = code
+		if not m._prototype._defined_methods.doesExist(name)
+			code = methods[name]
+			if type(box(code)) = "roFunction"
+				m[name] = code
+				m._prototype._defined_methods[name] = code
+			end if
+		end if
 	end for
 	return true
 end function
