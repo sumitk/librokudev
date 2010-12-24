@@ -1,0 +1,46 @@
+Sketching concept for plugin architecture
+-----------------------------------------
+
+The basic idea is that plugins are just normal .brs files that reside in
+one or more subdirectories of source/; they get compiled and linked into
+the main program like any other code.  The magic that makes them plugins
+is that their initialization routines can be called automatically but in
+a defined order, passing a state object between them that each plugin is
+free to read and modify as required.
+
+Each plugin init routine can return invalid to indicate critical failure
+(which prevents further processing and stops the program).  Alternately,
+the plugin init can return any other value to indicate a success or non-
+critical failure; by convention these can be represented by boolean true
+and false, but more detailed status information can be returned as well.
+
+The collected plugin status info is returned by rdPluginsInit() when all
+plugins have been initialized, so that the caller can inspect the status
+details as desired.
+
+
+Rough code:
+-----------
+
+function rdPluginsInit(dir as string, state as dynamic) as object
+    plugin_status = {}
+
+    files = sort(ListDir(dir))
+
+    for each file in files
+        plugin = plugin_from_filename(file)
+	status = invalid
+
+	code   = "status = " + plugin + "_init(state)"
+	eval code
+
+	if status = invalid
+	    print "ERROR:  Plugin '"; plugin; "' failed initialization badly."
+	    stop
+    	end if
+
+	plugin_status[plugin] = status
+    end for
+
+    return plugin_status
+end function

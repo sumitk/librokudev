@@ -1,0 +1,76 @@
+rdClass Usage:
+
+function point2D(initdata as object) as object
+	this = rdClass("point2D", {
+		x: {
+			type: "roInt",
+			default: 1 ' Default value
+			coerce: true ' coerce tries to auto-convert floats, strings etc to the target type
+			accessor: "x" ' x = this.x : this.x(2)
+			writer: "setX" ' this.setX(2)
+			reader: "getX" ' x = this.getX()
+			validator: "myFunction" ' String name of function that returns boolean for whether value is acceptable
+		} 
+		y: {
+			type: "roInt",
+			coerce: true ' coerce tries to auto-convert floats, strings etc to the target type
+			accessor: "y" ' y = this.y : this.y(2)
+			writer: "setY" ' this.setY(2)
+			reader: "getY" ' y = this.getY()
+			' Validator is optional
+		} 
+		somevar: { ' No type, so dynamic, no coersion (which is useless with coersion)
+			accessor: "something"
+		}
+		foo: {
+			type: "roInt"
+			reader: "f" ' Access through this.f()
+		} ' No automatic way to set attribute
+	})
+
+	' Nothing prevents you from using object as you did before
+	' Manually defined method accessing automatic attribute
+	this.incrementFoo = function() : m._data.foo = m._data.foo + 1 : end function
+	' Manually defined attribute and method
+	this._manual = 1
+	this.getManual = function() : return this._manual : end function
+
+	this.initialize(initdata)
+
+	return this
+end function
+
+function line(initdata as object) as object
+	this = rdClass("line", {
+		p1: {
+			type: "point2D" ' Require passed in value be an rdClass("point2D") class
+			accessor: "p1"
+		} 
+		p2: {
+			type: "point2D"
+			accessor: "p2"
+		} 
+	})
+
+	this.length = function()
+		dx = m.P2().X() - m.P1().X()
+		dy = m.P2().Y() - m.P1().Y()
+		return int(sqr( dx ^ 2 + dy ^ 2 ))
+	end function
+
+	this.initialize(initdata)
+
+	return this
+end function
+ 
+ Valid types:
+	"roInt"
+	"roString"
+	"roFloat"
+	"roBoolean"
+	"roArray"
+	"roList"
+	"roAssociativeArray"
+	"roByteArray"
+	"roFunction"
+
