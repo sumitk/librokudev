@@ -1,0 +1,5 @@
+rdCRC is a class to allow for easy generation of CRC values from strings or byte arrays.
+
+crcObj = rdCRC()
+print crcObj.crc(bytearray)
+print crcObj.crcAscii("string of content")

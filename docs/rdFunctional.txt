@@ -1,0 +1,15 @@
+rdFunctional.brs
+
+See in-code documentation.  Some examples here:
+
+rdMap:
+	function addOne(i) : return i+1 : end function
+	incremented = rdMap(addOne, [1,2,3]) ' incremented contains [2,3,4]
+	incremented = rdMap(addOne, {a:1,b:2,c:3}, true) ' incremented contains [2,3,4]
+
+	function addOneAA(k, v) : return [k+"_new",v+1] : end function
+	renamed_and_incremented = rdMap(addOneAA, {a:1,b:2,c:3}) ' renamed_and_incremented contains {a_new: 2, b_new: 3, c_new: 4}
+
+rdApply:
+	function foobar(i as integer, s as string, f as float) as string : return "called without error" : end function
+	print rdApply(foobar, [1,"somthing",3.14]) ' prints "called without error"
